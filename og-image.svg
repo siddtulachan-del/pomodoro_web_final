@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f7f6f3"/>
+  <circle cx="156" cy="154" r="72" fill="#b8321d"/>
+  <path d="M158 101c-13-23-34-29-54-21 10 19 26 28 47 25-25 7-41 26-41 55 0 44 19 78 48 78s48-34 48-78c0-28-16-48-41-55 21 3 40-6 47-25-21-8-43-2-57 21z" fill="#fff7e9"/>
+  <path d="M156 104c-5-18-3-30 7-43" fill="none" stroke="#fff7e9" stroke-linecap="round" stroke-width="11"/>
+  <text x="260" y="176" fill="#262522" font-family="Arial, sans-serif" font-size="54" font-weight="700">Pomodoro Timer</text>
+  <text x="120" y="345" fill="#262522" font-family="Arial, sans-serif" font-size="66" font-weight="700">Make room for focused work.</text>
+  <text x="122" y="412" fill="#5b5954" font-family="Arial, sans-serif" font-size="30">A calm, private Pomodoro timer that works offline.</text>
+  <rect x="120" y="478" width="340" height="10" rx="5" fill="#b8321d"/>
+  <rect x="468" y="478" width="170" height="10" rx="5" fill="#236988"/>
+</svg>

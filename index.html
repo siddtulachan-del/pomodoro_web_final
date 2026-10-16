@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pomodoro Timer | Free Focus Timer</title>
+  <meta name="description" content="A calm, private Pomodoro timer with flexible focus rounds, long breaks, and useful progress stats. Works offline.">
+  <meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#191a1b" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://YOURDOMAIN.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pomodoro Timer">
+  <meta property="og:title" content="Pomodoro Timer | Free Focus Timer">
+  <meta property="og:description" content="A calm, private Pomodoro timer with flexible focus rounds, long breaks, and useful progress stats. Works offline.">
+  <meta property="og:url" content="https://YOURDOMAIN.com/">
+  <meta property="og:image" content="https://YOURDOMAIN.com/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pomodoro Timer | Free Focus Timer">
+  <meta name="twitter:description" content="Focus in calm, manageable rounds. Private, customizable, and ready to work offline.">
+  <meta name="twitter:image" content="https://YOURDOMAIN.com/og-image.svg">
+  <link id="favicon" rel="icon" href="icons/favicon-focus.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preload" href="fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    try {
+      var savedSettings = JSON.parse(localStorage.getItem('pomodoro.settings') || '{}');
+      document.documentElement.dataset.theme = ['light', 'dark', 'system'].includes(savedSettings.theme)
+        ? savedSettings.theme : 'system';
+    } catch (error) { document.documentElement.dataset.theme = 'system'; }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Pomodoro Timer",
+      "url": "https://YOURDOMAIN.com/",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Any",
+      "description": "A free, private Pomodoro timer with focus rounds, short and long breaks, and offline support.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How long is a Pomodoro?", "acceptedAnswer": { "@type": "Answer", "text": "A traditional Pomodoro is 25 minutes of focused work followed by a short break. You can change both durations in Settings." } },
+        { "@type": "Question", "name": "What is the 52/17 method?", "acceptedAnswer": { "@type": "Answer", "text": "The 52/17 method alternates 52 minutes of focused work with a 17-minute break. Choose the 52/17 preset in Settings." } },
+        { "@type": "Question", "name": "Does the timer work offline?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. After the first visit, the app's static files are cached so the timer works offline." } },
+        { "@type": "Question", "name": "Is my data private?", "acceptedAnswer": { "@type": "Answer", "text": "Your settings, timer state, and stats stay in this browser's local storage. There are no accounts." } },
+        { "@type": "Question", "name": "Can I change the focus and break lengths?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Choose a preset or adjust each duration and the focus rounds per cycle in Settings." } },
+        { "@type": "Question", "name": "What is a long break?", "acceptedAnswer": { "@type": "Answer", "text": "A long break is a longer rest that follows a chosen number of completed focus rounds. You can set its duration and frequency." } }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <header class="tabs" aria-label="Main navigation">
+    <a class="brand" href="#timer" aria-label="Pomodoro Timer home"><span aria-hidden="true">🍅</span> Pomodoro Timer</a>
+    <nav class="tab-links" aria-label="Main">
+      <a class="tab active" href="#timer" data-view="timer">Timer</a>
+      <a class="tab" href="#settings" data-view="settings">Settings</a>
+      <a class="tab" href="#stats" data-view="stats">Stats</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="view-timer" class="view timer-view" aria-label="Timer">
+      <div class="timer-stage">
+        <h1 class="sr-only">Free Pomodoro timer for focused work</h1>
+        <div class="timer-wrap">
+          <div class="ring" role="timer" aria-label="Time remaining" aria-live="off">
+            <svg viewBox="0 0 320 320" aria-hidden="true">
+              <circle class="ring-track" cx="160" cy="160" r="150"/>
+              <circle class="ring-progress" id="ring-progress" cx="160" cy="160" r="150"/>
+            </svg>
+            <div class="time" id="time">25:00</div>
+          </div>
+          <div class="side">
+            <p class="phase-label" id="phase">Focus</p>
+            <div class="dots" id="dots" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" aria-label="Cycles completed toward today's goal"></div>
+            <div class="controls">
+              <button class="play" id="play" aria-label="Start timer">
+                <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path id="play-icon" d="M8 5v14l11-7z" fill="currentColor"/></svg>
+              </button>
+              <button class="skip" id="skip" aria-label="Skip to next phase" hidden>
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" fill="currentColor"/></svg>
+              </button>
+              <button class="icon-button focus-toggle" id="focus-toggle" aria-label="Enter focus mode">Focus mode</button>
+              <button class="icon-button focus-exit" id="focus-exit" aria-label="Exit focus mode" hidden>Exit focus mode</button>
+            </div>
+            <label class="task-label" for="task">What are you working on?</label>
+            <input id="task" class="task-input" type="text" maxlength="120" autocomplete="off" placeholder="Add an optional task">
+            <button class="text-button reset-timer" id="reset" type="button">Reset timer</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="shortcut-hint"><strong>Keyboard shortcuts</strong> · Space start/pause · S skip · R reset · 1 Timer · 2 Settings · 3 Stats</p>
+      <article class="seo-content">
+        <h2>What is the Pomodoro Technique?</h2>
+        <p>The Pomodoro Technique breaks work into focused intervals separated by restorative pauses. A clear start and a planned rest can make a large task feel more approachable, while regular breaks give your attention room to recover.</p>
+        <h2>How to use this timer</h2>
+        <ol>
+          <li>Choose a focus and break preset, or tailor the lengths in Settings.</li>
+          <li>Write down the task you want to move forward.</li>
+          <li>Start the timer and give one thing your attention until the phase ends.</li>
+          <li>Take your break, then return for the next focus round.</li>
+        </ol>
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list">
+          <details><summary>How long is a Pomodoro?</summary><p>A traditional Pomodoro is 25 minutes of focused work followed by a short break. You can change both durations in Settings.</p></details>
+          <details><summary>What is the 52/17 method?</summary><p>The 52/17 method alternates 52 minutes of focused work with a 17-minute break. Choose the 52/17 preset in Settings.</p></details>
+          <details><summary>Does this timer work offline?</summary><p>Yes. After the first visit, the app's static files are cached so the timer works offline.</p></details>
+          <details><summary>Is my data private?</summary><p>Your settings, timer state, and stats stay in this browser's local storage. There are no accounts.</p></details>
+          <details><summary>Can I change the focus and break lengths?</summary><p>Yes. Choose a preset or adjust each duration and the focus rounds per cycle in Settings.</p></details>
+          <details><summary>What is a long break?</summary><p>A long break is a longer rest that follows a chosen number of completed focus rounds. You can set its duration and frequency.</p></details>
+        </div>
+        <footer class="site-footer">
+          <p>Privacy: no accounts; your data stays in this browser. <span>GitHub: add your project link here.</span> <a href="mailto:hello@yourdomain.com">Contact</a></p>
+        </footer>
+      </article>
+    </section>
+
+    <section id="view-settings" class="view settings-view" aria-label="Settings" hidden>
+      <h1 class="page-title">Settings</h1>
+      <div class="summary" aria-label="Cycle overview">
+        <div class="summary-total" id="sum-total"></div>
+        <div class="summary-sub" id="sum-sub"></div>
+        <div class="bar" id="sum-bar" aria-hidden="true"></div>
+      </div>
+
+      <h2 class="section-title">Timer</h2>
+      <div class="group">
+        <div class="row"><div class="label">Focus length<small>Minutes in each focus round</small></div><div class="stepper" data-key="sprint"><button type="button" data-d="-1" aria-label="Decrease focus length">−</button><span class="val"><input class="val-input" type="number" data-value min="15" max="90" step="1" aria-label="Focus length in minutes"> <i>min</i></span><button type="button" data-d="1" aria-label="Increase focus length">+</button></div></div>
+        <div class="row"><div class="label">Focus rounds per cycle</div><div class="stepper" data-key="sprints"><button type="button" data-d="-1" aria-label="Decrease focus rounds per cycle">−</button><span class="val"><input class="val-input" type="number" data-value min="1" max="8" step="1" aria-label="Focus rounds per cycle"></span><button type="button" data-d="1" aria-label="Increase focus rounds per cycle">+</button></div></div>
+        <div class="row"><div class="label">Short break length</div><div class="stepper" data-key="brk"><button type="button" data-d="-1" aria-label="Decrease short break length">−</button><span class="val"><input class="val-input" type="number" data-value min="5" max="30" step="1" aria-label="Short break length in minutes"> <i>min</i></span><button type="button" data-d="1" aria-label="Increase short break length">+</button></div></div>
+        <div class="row"><div class="label">Long break length</div><div class="stepper" data-key="longBrk"><button type="button" data-d="-1" aria-label="Decrease long break length">−</button><span class="val"><input class="val-input" type="number" data-value min="10" max="45" step="1" aria-label="Long break length in minutes"> <i>min</i></span><button type="button" data-d="1" aria-label="Increase long break length">+</button></div></div>
+        <div class="row"><div class="label">Long break every</div><div class="stepper" data-key="longEvery"><button type="button" data-d="-1" aria-label="Decrease long break frequency">−</button><span class="val"><input class="val-input" type="number" data-value min="2" max="8" step="1" aria-label="Long break frequency in rounds"> <i>rounds</i></span><button type="button" data-d="1" aria-label="Increase long break frequency">+</button></div></div>
+      </div>
+      <button class="secondary-button reset-cycle-settings" id="reset-cycle-settings" type="button">Reset cycle</button>
+      <div class="preset-block">
+        <h3>Quick presets</h3>
+        <div class="preset-list" id="presets" aria-label="Timer presets">
+          <button type="button" data-preset="25-5">Classic 25/5</button>
+          <button type="button" data-preset="50-10">50/10</button>
+          <button type="button" data-preset="52-17">52/17</button>
+          <button type="button" data-preset="90-20">90/20</button>
+          <button type="button" data-preset="custom">Custom</button>
+        </div>
+      </div>
+
+      <h2 class="section-title">Goal</h2>
+      <div class="group">
+        <div class="row"><div class="label">Cycles per day</div><div class="stepper" data-key="goal"><button type="button" data-d="-1" aria-label="Decrease daily cycle goal">−</button><span class="val"><input class="val-input" type="number" data-value min="1" max="12" step="1" aria-label="Cycles per day"></span><button type="button" data-d="1" aria-label="Increase daily cycle goal">+</button></div></div>
+      </div>
+
+      <h2 class="section-title">Alerts</h2>
+      <div class="group">
+        <div class="row"><div class="label">Notify me when a phase ends<small id="notification-hint" aria-live="polite">Notifications are off.</small></div><label class="switch"><input id="notifications" type="checkbox"><span class="switch-ui" aria-hidden="true"></span><span class="sr-only">Notify me when a phase ends</span></label></div>
+        <div class="row"><div class="label">Sound<small id="sound-hint">Play a tone when a phase ends</small></div><label class="switch"><input id="sound-toggle" type="checkbox"><span class="switch-ui" aria-hidden="true"></span><span class="sr-only">Sound on</span></label></div>
+        <div class="row volume-row"><label class="label" for="volume">Volume</label><div class="volume-control"><input id="volume" type="range" min="0" max="1" step="0.05"><output id="volume-value" for="volume"></output></div></div>
+      </div>
+
+      <h2 class="section-title">Appearance</h2>
+      <div class="segmented" id="theme" role="radiogroup" aria-label="Color theme">
+        <button type="button" role="radio" data-theme="light"><span class="tick">✓</span>Light</button>
+        <button type="button" role="radio" data-theme="dark"><span class="tick">✓</span>Dark</button>
+        <button type="button" role="radio" data-theme="system"><span class="tick">✓</span>System</button>
+      </div>
+
+      <h2 class="section-title">Data</h2>
+      <p class="data-note">Your timer settings, task labels, and stats are stored only in this browser. Importing a JSON backup replaces the data here.</p>
+      <div class="data-actions"><button class="secondary-button" id="export-json" type="button">Export JSON</button><button class="secondary-button" id="import-json" type="button">Import JSON</button><input id="import-json-file" type="file" accept=".json,application/json" hidden><button class="danger-button" id="clear-data" type="button">Clear data</button></div>
+    </section>
+
+    <section id="view-stats" class="view stats-view" aria-label="Stats" hidden>
+      <h1 class="page-title">Stats</h1>
+      <div class="stat-cards">
+        <article class="stat-card"><h2>Focus time today</h2><p id="stat-today">0 min</p></article>
+        <article class="stat-card"><h2>This week</h2><p id="stat-week">0 min</p></article>
+        <article class="stat-card"><h2>All time</h2><p id="stat-all">0 min</p></article>
+        <article class="stat-card"><h2>Current streak</h2><p id="stat-current-streak">0 days</p></article>
+        <article class="stat-card"><h2>Best streak</h2><p id="stat-best-streak">0 days</p></article>
+      </div>
+      <h2 class="section-title">Last 7 days</h2>
+      <div id="chart" class="chart-wrap"></div>
+      <h2 class="section-title">Daily progress</h2>
+      <div class="history-list" id="history-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="app.js" defer></script>
+  <!-- Optional privacy-friendly analytics. Enable after replacing YOURDOMAIN.com. -->
+  <!-- <script defer data-domain="YOURDOMAIN.com" src="https://plausible.io/js/script.js"></script> -->
+</body>
+</html>
