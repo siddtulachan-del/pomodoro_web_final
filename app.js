@@ -240,7 +240,7 @@
     try {
       new Notification(`${phase === 'focus' ? 'Focus round' : phase === 'longBreak' ? 'Long break' : 'Break'} complete`, {
         body: `Time for your next ${next.toLowerCase()} phase.`,
-        icon: '/icons/icon-192.svg',
+        icon: '/icons/icon-192.png',
         tag: 'pomodoro-phase',
       });
     } catch (error) {
@@ -373,8 +373,6 @@
     el.dots.setAttribute('aria-label', `${state.done} of ${settings.goal} cycles completed toward today's goal`);
     el.dots.setAttribute('aria-valuemax', String(settings.goal));
     el.dots.setAttribute('aria-valuenow', String(Math.min(state.done, settings.goal)));
-    const favicon = $('#favicon');
-    if (favicon) favicon.href = `/icons/favicon-${isBreak ? 'break' : 'focus'}.svg`;
     document.title = state.running
       ? `${formatTime(state.remaining)} · ${el.phase.textContent}`
       : document.body.dataset.pageTitle || 'Pomodoro Timer | Free Focus Timer';

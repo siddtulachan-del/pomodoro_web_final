@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'tomato-time-static-v7';
+const CACHE_NAME = 'tomato-time-static-v8';
 const APP_SHELL = [
   '/',
   '/index.html',
