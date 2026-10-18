@@ -30,6 +30,4 @@ Serve the site over HTTPS (or localhost during development) for notifications, t
 ## Before launch
 
 - Replace every `YOURDOMAIN.com` with the production domain in canonical URLs, Open Graph metadata, structured data, `robots.txt`, and `sitemap.xml`.
-- Replace `/og-image.svg` with a final 1200×630 social image if desired; keep its URL consistent with the metadata.
 - Replace `YOURDOMAIN.com` in the commented Plausible snippet's `data-domain` before enabling it.
-- Replace `hello@yourdomain.com` with a real contact address and add a real GitHub project link if available.

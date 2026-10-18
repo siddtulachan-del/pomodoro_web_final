@@ -13,13 +13,9 @@
   <meta property="og:title" content="Pomodoro Timer | Free Focus Timer">
   <meta property="og:description" content="A calm, private Pomodoro timer with flexible focus rounds, long breaks, and useful progress stats. Works offline.">
   <meta property="og:url" content="https://YOURDOMAIN.com/">
-  <meta property="og:image" content="https://YOURDOMAIN.com/og-image.svg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Pomodoro Timer | Free Focus Timer">
   <meta name="twitter:description" content="Focus in calm, manageable rounds. Private, customizable, and ready to work offline.">
-  <meta name="twitter:image" content="https://YOURDOMAIN.com/og-image.svg">
   <link id="favicon" rel="icon" href="icons/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
@@ -121,9 +117,6 @@
           <details><summary>Can I change the focus and break lengths?</summary><p>Yes. Choose a preset or adjust each duration and the focus rounds per cycle in Settings.</p></details>
           <details><summary>What is a long break?</summary><p>A long break is a longer rest that follows a chosen number of completed focus rounds. You can set its duration and frequency.</p></details>
         </div>
-        <footer class="site-footer">
-          <p>Privacy: no accounts; your data stays in this browser. <span>GitHub: add your project link here.</span> <a href="mailto:hello@yourdomain.com">Contact</a></p>
-        </footer>
       </article>
     </section>
 
@@ -194,7 +187,14 @@
       <div class="history-list" id="history-list" aria-live="polite"></div>
     </section>
   </main>
-
+  <footer class="site-footer">
+    <nav aria-label="Footer">
+      <a href="/privacy/">Privacy Policy</a><span aria-hidden="true">|</span>
+      <a href="/about/">About</a><span aria-hidden="true">|</span>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <p>No accounts. Timer data stays in your browser.</p>
+  </footer>
   <script src="app.js" defer></script>
   <!-- Optional privacy-friendly analytics. Enable after replacing YOURDOMAIN.com. -->
   <!-- <script defer data-domain="YOURDOMAIN.com" src="https://plausible.io/js/script.js"></script> -->

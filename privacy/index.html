@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Privacy Policy | Pomodoro Timer</title>
+  <meta name="description" content="Learn what the Pomodoro Timer stores locally and how it handles privacy, advertising, and your data.">
+  <meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#191a1b" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://YOURDOMAIN.com/privacy/">
+  <link rel="icon" href="/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preload" href="/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    try {
+      var savedSettings = JSON.parse(localStorage.getItem('pomodoro.settings') || '{}');
+      document.documentElement.dataset.theme = ['light', 'dark', 'system'].includes(savedSettings.theme)
+        ? savedSettings.theme : 'system';
+    } catch (error) { document.documentElement.dataset.theme = 'system'; }
+  </script>
+</head>
+<body class="info-page">
+  <header class="info-header">
+    <a class="brand" href="/" aria-label="Pomodoro Timer home"><span aria-hidden="true">🍅</span> Pomodoro Timer</a>
+    <a class="back-link" href="/">Back to timer</a>
+  </header>
+  <main>
+    <article class="settings-view info-content">
+      <h1 class="page-title">Privacy Policy</h1>
+      <p class="data-note">Last updated: October 18, 2026</p>
+
+      <h2 class="section-title">Overview</h2>
+      <p>This is a free Pomodoro timer designed with privacy in mind.</p>
+
+      <h2 class="section-title">Stored on your device</h2>
+      <p>Your timer settings, timer state, task labels, stats, and theme are saved in your browser's local storage and are not sent to us. Optional browser notifications and sound alerts are handled locally by your browser.</p>
+
+      <h2 class="section-title">Not collected</h2>
+      <p>We do not have accounts and do not collect names or email addresses.</p>
+
+      <h2 class="section-title">Advertising and cookies</h2>
+      <p>This site may display ads served by Google AdSense. Google, as a third-party vendor, uses cookies to serve ads based on a user's prior visits to this or other websites. Google's use of advertising cookies enables it and its partners to serve ads based on your visit to this site and/or other sites on the internet. You may opt out of personalized advertising at <a href="https://adssettings.google.com">Google Ads Settings</a> or <a href="https://www.aboutads.info">www.aboutads.info</a>. Third-party vendors may also place and read cookies on your browser. Ads appear only if and when advertising is enabled on this site.</p>
+
+      <h2 class="section-title">Analytics</h2>
+      <p>We do not currently use analytics. If this changes, this policy will be updated.</p>
+
+      <h2 class="section-title">Deleting your data</h2>
+      <p>Use Settings &gt; Data &gt; Clear data, or clear this site's data in your browser settings. Export JSON and Import JSON backups stay on your device.</p>
+
+      <h2 class="section-title">Children</h2>
+      <p>This site is not directed at children under 13, and we do not knowingly collect personal information from children.</p>
+
+      <h2 class="section-title">Changes</h2>
+      <p>Updates to this policy will be posted here with a new date.</p>
+
+      <h2 class="section-title">Contact</h2>
+      <p>For questions about this policy, please use our <a href="/contact/">contact page</a>.</p>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <nav aria-label="Footer">
+      <a href="/privacy/">Privacy Policy</a><span aria-hidden="true">|</span>
+      <a href="/about/">About</a><span aria-hidden="true">|</span>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <p>No accounts. Timer data stays in your browser.</p>
+  </footer>
+</body>
+</html>

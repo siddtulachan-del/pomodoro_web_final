@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'tomato-time-static-v8';
+const CACHE_NAME = 'tomato-time-static-v9';
 const APP_SHELL = [
   '/',
   '/index.html',
@@ -8,6 +8,9 @@ const APP_SHELL = [
   '/50-10/',
   '/52-17/',
   '/90-20/',
+  '/privacy/',
+  '/about/',
+  '/contact/',
   '/404.html',
   '/styles.css',
   '/app.js',
@@ -19,7 +22,6 @@ const APP_SHELL = [
   '/icons/apple-touch-icon.png',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
-  '/og-image.svg',
 ];
 
 self.addEventListener('install', event => {

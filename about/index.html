@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>About | Pomodoro Timer</title>
+  <meta name="description" content="About this free, private, customizable Pomodoro timer and why it was built.">
+  <meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#191a1b" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://YOURDOMAIN.com/about/">
+  <link rel="icon" href="/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preload" href="/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    try {
+      var savedSettings = JSON.parse(localStorage.getItem('pomodoro.settings') || '{}');
+      document.documentElement.dataset.theme = ['light', 'dark', 'system'].includes(savedSettings.theme)
+        ? savedSettings.theme : 'system';
+    } catch (error) { document.documentElement.dataset.theme = 'system'; }
+  </script>
+</head>
+<body class="info-page">
+  <header class="info-header">
+    <a class="brand" href="/" aria-label="Pomodoro Timer home"><span aria-hidden="true">🍅</span> Pomodoro Timer</a>
+    <a class="back-link" href="/">Back to timer</a>
+  </header>
+  <main>
+    <article class="settings-view info-content">
+      <h1 class="page-title">About</h1>
+      <p>This is a free Pomodoro timer for people who want a steady rhythm for focused work and real breaks. Choose a focus-and-break preset, adjust the lengths, and schedule longer breaks after a set of focus rounds. Simple stats help you see how much time you have spent focusing without turning the timer into another project to manage.</p>
+      <p>It exists to make it easier to begin and return to a task, without accounts, clutter, or a setup process. Your timer settings, current state, task labels, stats, and theme stay in local storage in your browser; they are not sent to us. The timer can also work offline after its files have been loaded. This is an independently built and maintained project, made to be calm, useful, and easy to adapt to your own routine.</p>
+      <!-- TODO: add your name -->
+      <p>Built by [NAME TO BE ADDED].</p>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <nav aria-label="Footer">
+      <a href="/privacy/">Privacy Policy</a><span aria-hidden="true">|</span>
+      <a href="/about/">About</a><span aria-hidden="true">|</span>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <p>No accounts. Timer data stays in your browser.</p>
+  </footer>
+</body>
+</html>

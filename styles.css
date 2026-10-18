@@ -231,9 +231,33 @@ main { min-height: 100vh; }
 .faq-list details { padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
 .faq-list summary { cursor: pointer; font-weight: 600; }
 .faq-list details p { margin-top: 10px; font-size: 15px; }
-.site-footer { margin-top: 42px; padding-top: 20px; border-top: 1px solid var(--line); }
-.site-footer p, .site-footer span { font-size: 14px; }
-.site-footer a { font-weight: 600; text-underline-offset: 3px; }
+.site-footer {
+  width: min(100% - 32px, 760px);
+  margin: 0 auto;
+  padding: 20px 0 32px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  text-align: center;
+}
+.site-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.site-footer p { margin: 10px 0 0; font-size: 14px; }
+.site-footer a { color: var(--text); font-size: 14px; font-weight: 600; text-underline-offset: 3px; }
+.info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(100% - 32px, 760px);
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.info-header .brand { display: inline-flex; align-items: center; }
+.back-link { font-size: 14px; font-weight: 600; text-underline-offset: 3px; }
+.info-content { max-width: 760px; }
+.info-page main { min-height: 0; }
+.info-page .info-content { padding-bottom: 32px; }
+.info-content p, .info-content li { color: var(--muted); font-size: 17px; line-height: 1.7; }
+.info-content p { margin: 0 0 14px; }
 
 /* Keep only the timer and essential controls visible while it is running. */
 .timer-running .tabs,
@@ -420,6 +444,8 @@ main { min-height: 100vh; }
   .task-input { text-align: center; }
   .seo-content { padding: 24px 4px 38px; }
   .settings-view, .stats-view { width: min(100% - 28px, 620px); padding-top: 28px; }
+  .info-header { width: min(100% - 28px, 760px); padding: 16px 0; }
+  .site-footer { width: min(100% - 28px, 760px); padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px)); }
   .row { padding: 10px 12px; }
   .stepper { gap: 8px; }
   .stepper button { width: 36px; height: 36px; }
