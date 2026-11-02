@@ -253,7 +253,7 @@ main { min-height: 100vh; }
 }
 .info-header .brand { display: inline-flex; align-items: center; }
 .back-link { font-size: 14px; font-weight: 600; text-underline-offset: 3px; }
-.info-content { max-width: 760px; }
+.info-content { width: min(100% - 32px, 70ch); max-width: 70ch; }
 .info-page main { min-height: 0; }
 .info-page .info-content { padding-bottom: 32px; }
 .info-content p, .info-content li { color: var(--muted); font-size: 17px; line-height: 1.7; }
