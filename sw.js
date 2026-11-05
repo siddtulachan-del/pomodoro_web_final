@@ -10,7 +10,6 @@ const APP_SHELL = [
   '90-20/',
   'privacy/',
   'about/',
-  'contact/',
   '404.html',
   'styles.css',
   'app.js',
