@@ -1,31 +1,34 @@
 'use strict';
 
-const CACHE_NAME = 'tomato-time-static-v9';
+const CACHE_NAME = 'tomato-time-static-v10';
 const APP_SHELL = [
-  '/',
-  '/index.html',
-  '/25-5/',
-  '/50-10/',
-  '/52-17/',
-  '/90-20/',
-  '/privacy/',
-  '/about/',
-  '/contact/',
-  '/404.html',
-  '/styles.css',
-  '/app.js',
-  '/manifest.webmanifest',
-  '/fonts/figtree-latin.woff2',
-  '/icons/favicon.svg',
-  '/icons/favicon-focus.svg',
-  '/icons/favicon-break.svg',
-  '/icons/apple-touch-icon.png',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
+  './',
+  'index.html',
+  '25-5/',
+  '50-10/',
+  '52-17/',
+  '90-20/',
+  'privacy/',
+  'about/',
+  'contact/',
+  '404.html',
+  'styles.css',
+  'app.js',
+  'manifest.webmanifest',
+  'fonts/figtree-latin.woff2',
+  'icons/favicon.svg',
+  'icons/favicon-focus.svg',
+  'icons/favicon-break.svg',
+  'icons/apple-touch-icon.png',
+  'icons/icon-192.png',
+  'icons/icon-512.png',
 ];
 
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
+  const shellUrls = [...new Set(
+    APP_SHELL.map(path => new URL(path, self.registration.scope).href),
+  )];
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(shellUrls)));
   self.skipWaiting();
 });
 
@@ -50,7 +53,7 @@ self.addEventListener('fetch', event => {
       return response;
     }).catch(async () => {
       const cached = await caches.match(request);
-      return cached || caches.match('/index.html');
+      return cached || caches.match(new URL('index.html', self.registration.scope).href);
     }));
     return;
   }

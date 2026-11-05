@@ -240,7 +240,7 @@
     try {
       new Notification(`${phase === 'focus' ? 'Focus round' : phase === 'longBreak' ? 'Long break' : 'Break'} complete`, {
         body: `Time for your next ${next.toLowerCase()} phase.`,
-        icon: '/icons/icon-192.png',
+        icon: $('#favicon').href,
         tag: 'pomodoro-phase',
       });
     } catch (error) {
@@ -944,7 +944,9 @@
   renderSettings();
   render();
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    navigator.serviceWorker.register('/sw.js').catch(error => {
+    const appScript = document.querySelector('script[src$="app.js"]');
+    const serviceWorkerUrl = new URL('sw.js', appScript.src);
+    navigator.serviceWorker.register(serviceWorkerUrl).catch(error => {
       console.warn('Offline support could not be registered.', error);
     });
   }
